@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <th:block th:replace="~{layout :: link-css}"></th:block>
+  <th:block th:replace="~{layout :: link-css-layout}"></th:block>
+  <link th:href="@{/css/style-btn-profile.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:replace="~{layout :: header}"></th:block>
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-12 col-xl-9">
+        <div class="card">
+          <div class="rounded-top d-flex flex-row"
+               th:style="'background-image: url(/image/Background-banner-1.jpg); height:190px; object-fit: cover'" style="">
+            <div class="ms-5 d-flex flex-column" style="width: 160px; height: 160px; margin-top: 120px">
+              <div class="position-relative">
+                <img th:src="@{${urlAvt}}"
+                     alt="" class="img-fluid img-thumbnail"
+                     style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; z-index: 1">
+                <div class="position-absolute bottom-0 end-0">
+                  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#uploadfile">
+                    <i class='bx bx-upload'></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="fs-2 ms-3 position-relative" style="margin-top: 190px; color:#000">
+              <p class="text-capitalize" th:text="${user.getFullName()}"></p>
+            </div>
+          </div>
+          <div class="" style="background-color: #E9ECEF;height: 100px">
+            <div class="d-flex justify-content-end text-center py-1">
+              <label class="switch position-absolute top-0 end-0 me-3" style="margin-top: 177px;">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+
+            </div>
+          </div>
+          <div id="about" class="about">
+            <div class="container">
+              <div class="text-center mt-2">
+                <h2>My Profile</h2>
+              </div>
+              <div class="d-flex justify-content-end text-center py-1">
+                <button class="BtnEdit me-3" data-bs-toggle="modal"
+                        data-bs-target="#editProfile" style="z-index: 1;" data-mdb-ripple-color="dark" >Edit
+                  <svg class="svgEdit" viewBox="0 0 512 512">
+                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg>
+                </button>
+              </div>
+              <div class="row">
+                <div class="col-lg-10 pt-4 pt-lg-0 content" data-aos="fade-left">
+                  <div class="fst-italic">
+                    <span>Hello, </span>
+                    <span class="text-capitalize" th:text="${user.getFullName()}"></span>
+                    <span>. Nice to meet you!!!</span><br>
+                    <span>You can tell me information about you by clicking the button on the right.</span><br>
+                    <span>That's also how you update your profile.</span><br>
+                  </div>
+                  <hr>
+                  <h4>About me.</h4><br>
+                  <div class="row">
+                    <div class="col-lg-10">
+                      <ul>
+                        <li>
+                          <i class="bi bi-chevron-right"></i>
+                          <strong>Gender:</strong> <span th:text="${userGender}"></span></li>
+                        <li>
+                          <i class="bi bi-chevron-right"></i>
+                          <strong>Level:</strong> <span th:text="${userLevel}"></span>
+                        </li>
+                        <li>
+                          <div th:if="${userLevel} == 'Beginner'">
+                            <span>You know a little English.</span><br>
+                            <span>You can have simple conversations in shops, restaurants, etc.</span><br>
+                            <span>You can write simple sentences, but you usually need a dictionary to help you.</span>
+                          </div>
+                          <div th:if="${userLevel} == 'Advanced'">
+                            <span>You can speak and write confidently about a wide range topics.</span><br>
+                            <span>You can read English books and newspapers, but use a dictionary to look up unfamiliar words.</span>
+                          </div>
+                          <div th:if="${userLevel} == 'Intermediate'">
+                            <span>You can have simple conversations about a lot of different topics.</span><br>
+                            <span>You can make some complex sentences.</span><br>
+                            <span>You can read some English texts, but often need a dictionary to help you.</span>
+                          </div>
+                        </li>
+                        <li><i class="bi bi-chevron-right"></i> <strong>Occupation:</strong> <span th:text="${userOccupation}"></span></li>
+                      </ul>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End About Section -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<th:block th:replace="~{layout :: footer}"></th:block>
+<th:block th:replace="~{layout :: script-js}"></th:block>
+<!--Dialog edit profile-->
+<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:#222831;">Edit profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form th:action="@{/user/profile/update}" method="post" th:object="${user}">
+          <div class="input-group mb-3">
+            <span class="input-group-text">Default</span>
+            <input readonly type="text" th:field="*{email}" placeholder="Email" class="form-control" aria-label="Sizing example input">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Name</span>
+            <input type="text" placeholder="Name" th:field="*{fullName}" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+            <select class="form-select" id="inputGroupSelect01" name="gender">
+              <option hidden="hidden" disabled selected th:text="${userGender}" th:value="${user.getGender()}"></option>
+              <option th:each="item: ${gender}" th:value="${item.key}"
+                      th:text="${item.value}"></option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect02">Level</label>
+            <select class="form-select" id="inputGroupSelect02" name="level">
+              <option hidden="hidden" disabled selected th:text="${userLevel}" th:value="${user.getLevel()}"></option>
+              <option th:each="item: ${level}" th:value="${item.key}"
+                      th:text="${item.value}"></option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect03">Occupation</label>
+            <select class="form-select" id="inputGroupSelect03" name="occupation">
+              <option hidden="hidden" disabled selected th:text="${userOccupation}" th:value="${user.getOccupation()}"></option>
+              <option th:each="item: ${occupation}" th:value="${item.key}"
+                      th:text="${item.value}"></option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Dialog Upload file -->
+<div class="modal fade" id="uploadfile" tabindex="-1" aria-labelledby="uploadFileLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadFileLabel">Upload File</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/user/profile/updateAvt}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="file" class="form-label">Update profile picture</label>
+            <input class="form-control" name="files" type="file" id="file" accept=".png, .jpg, .jpeg">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script>
+    function action(let userID){
+         const xhr = new XMLHttpRequest();
+         xhr.open('POT', 'http://13.236.161.75:4040/api/user/profile/files/');
+         setTimeout(function () {window.location.href="/user/profile"; }, 1000);
+    }
+</script>
+</html>
