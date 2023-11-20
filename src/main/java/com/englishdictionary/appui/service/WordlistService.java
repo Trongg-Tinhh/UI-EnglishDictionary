@@ -24,7 +24,7 @@ public class WordlistService {
     // lấy tất cả system wordlist
     public List<Wordlist> defaultWordList() {
         RestTemplate restTemplate = new RestTemplate();
-        String url = Host+Port+"/api/wordlists/default";
+        String url = Host+Port+"/api/wordlists/r4qtSQKgvrWtswB6o3Trs18st2j1";
         String getWordlist = restTemplate.getForObject(url, String.class);
 
         Gson gson = new Gson();
