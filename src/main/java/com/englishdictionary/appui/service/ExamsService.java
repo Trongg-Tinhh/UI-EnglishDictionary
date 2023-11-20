@@ -12,7 +12,7 @@ import java.util.List;
 public class ExamsService {
     private final String Port = "4040";
     /*private final String Host= "http://13.236.161.75:";*/
-    private final String Host= "http://localhost:";
+    private final String Host= "http://10.1.3.91:";
     public ResponseEntity<ListQuestion> getAllQuestions() {
         WebClient webClient = WebClient.create(Host + Port + "/api/tests/questions");
         List<Question> questions = webClient.get()
