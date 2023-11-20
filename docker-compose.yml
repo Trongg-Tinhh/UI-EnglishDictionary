@@ -1,7 +1,10 @@
 version: "3.9"
 services:
-  dictionary:
+  dictionary-ui:
     build:
+      context: .
       dockerfile: Dockerfile
+      args:
+        - "BUILD_NO_CACHE=1"
     ports:
-      - "4040:8080"
+      - "8088:8088"
