@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @Controller()
-//@RequestMapping("/")
+@RequestMapping("/")
 public class TestController {
     @Autowired
     WordlistService wordlistService;
@@ -71,13 +71,7 @@ public class TestController {
         List<Wordlist> wordlistForm = wordlistService.getAllUserWordList(userId);
         return wordlistForm.toString();
     }
-    @GetMapping("/test8")
-    @ResponseBody
-    public String test8(
-            HttpServletRequest request) {
-   Map test= userService.getGender();
-        return test.toString();
-    }
+
 
 
 }
