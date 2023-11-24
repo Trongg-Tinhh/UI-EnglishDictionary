@@ -23,9 +23,9 @@ public class TestController {
     @Autowired
     UserService userService;;
 
-    @GetMapping("/test")
+    @GetMapping("/game")
 //    @ResponseBody
-    public String test(
+    public String game(
             HttpServletRequest request,
             Model model
     ) {
