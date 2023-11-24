@@ -110,15 +110,16 @@
   fetch('http://10.1.3.91:4040/api/user/verify', {
     method: 'POST',
     headers: {
-      'Content-Type': 'text/plain',
-      'Access-Control-Allow-Origin':'http://localhost:8088'
+      'Content-Type': 'text/plain'
     },
     body: email
   })
     .then(function(response) {
       if (response.ok) {
+        alert("Email sent successfully!");
         console.log('Email sent successfully!');
       } else {
+        alert("Error sending email.");
         console.log('Error sending email. Status code: ' + response.status);
       }
     })
